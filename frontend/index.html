@@ -1,17 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="ru">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lernly</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <nav>
-    <div class="nav-links">
-      <a href="#">Главная</a>
-      <a href="#">О нас</a>
-      <a href="#">Курсы</a>
+    <div class="nav-container">
+      <div class="logo">Lernly</div>
+      <div class="nav-links">
+        <a href="#">Главная</a>
+        <a href="#">О нас</a>
+        <a href="#">Курсы</a>
+        <a href="#" class="profile-button" id="profileBtn">
+          <img src="iconka.jpg" alt="Профиль">
+        </a>
+      </div>
     </div>
-    <div class="profile-icon"></div>
   </nav>
 
   <div class="main-content">
@@ -22,5 +29,75 @@
 
   <div class="bottom-left">Курсы</div>
 
+  <!-- Модальное окно регистрации -->
+  <div id="registrationModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Регистрация</h2>
+      <form class="registration-form">
+        <div class="form-group">
+          <label for="name">Имя:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Пароль:</label>
+          <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Подтвердите пароль:</label>
+          <input type="password" id="confirm-password" name="confirm-password" required>
+        </div>
+        <button type="submit" class="submit-btn">Зарегистрироваться</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Получаем элементы
+    const profileBtn = document.getElementById('profileBtn');
+    const modal = document.getElementById('registrationModal');
+    const closeBtn = document.querySelector('.close');
+    const registrationForm = document.querySelector('.registration-form');
+
+    // Открываем модальное окно при клике на иконку профиля
+    profileBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      modal.style.display = 'block';
+    });
+
+    // Закрываем модальное окно при клике на крестик
+    closeBtn.addEventListener('click', function() {
+      modal.style.display = 'none';
+    });
+
+    // Закрываем модальное окно при клике вне его
+    window.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+
+    // Обработка формы регистрации
+    registrationForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      
+      if (password !== confirmPassword) {
+        alert('Пароли не совпадают!');
+        return;
+      }
+      
+      // Здесь можно добавить отправку данных на сервер
+      alert('Регистрация успешно завершена!');
+      modal.style.display = 'none';
+      registrationForm.reset();
+    });
+  </script>
 </body>
 </html>
