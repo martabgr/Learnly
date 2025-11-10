@@ -21,47 +21,122 @@
     </div>
   </nav>
 
+
   <div class="main-content">
     <h1>Lernly</h1>
     <p>новый сервис онлайн-обучения</p>
     <button class="signup-button">Записаться</button>
   </div>
 
+
   <div class="bottom-left">Курсы</div>
 
-  <!-- Модальное окно регистрации -->
+
+  <!-- Модальное окно регистрации/входа -->
   <div id="registrationModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <h2>Регистрация</h2>
-      <form class="registration-form">
-        <div class="form-group">
-          <label for="name">Имя:</label>
-          <input type="text" id="name" name="name" required>
+      
+      <!-- Переключатель между входом и регистрацией -->
+      <div class="auth-selector">
+        <div class="auth-option" id="loginTab">Вход</div>
+        <div class="auth-option active" id="registerTab">Регистрация</div>
+      </div>
+      
+      <!-- Форма регистрации -->
+      <div id="registerForm" class="form-container">
+        <div class="role-section">
+          <div class="input-container checkbox-style">
+            <input type="checkbox" id="teacherCheck">
+            <label for="teacherCheck">Я преподаватель</label>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="password">Пароль:</label>
-          <input type="password" id="password" name="password" required>
-        </div>
-        <div class="form-group">
-          <label for="confirm-password">Подтвердите пароль:</label>
-          <input type="password" id="confirm-password" name="confirm-password" required>
-        </div>
-        <button type="submit" class="submit-btn">Зарегистрироваться</button>
-      </form>
+        
+        <form class="registration-form">
+          <div class="form-group">
+            <div class="input-container">
+              <input type="text" id="name" required>
+              <label for="name">Введите свое Имя</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-container">
+              <input type="email" id="email" required>
+              <label for="email">Введите email</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-container password-container">
+              <input type="password" id="password" required>
+              <label for="password">Пароль</label>
+              <button type="button" class="toggle-password" data-target="password">Показать</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-container password-container">
+              <input type="password" id="confirm-password" required>
+              <label for="confirm-password">Повторите пароль</label>
+              <button type="button" class="toggle-password" data-target="confirm-password">Показать</button>
+            </div>
+          </div>
+          <div class="form-group checkbox-group">
+            <div class="input-container checkbox-style">
+              <input type="checkbox" id="agree" required>
+              <label for="agree">Я соглашаюсь на обработку персональных данных</label>
+            </div>
+          </div>
+          
+          <div class="divider"></div>
+          
+          <div class="button-container">
+            <button type="submit" class="submit-btn">Зарегистрироваться</button>
+          </div>
+        </form>
+        
+        <p class="legal-text">
+          Нажимая на кнопку, я соглашаюсь с публичной офертой, правилами акции «Поможем найти работу или вернем деньги» и с правилами пользования Платформой.
+        </p>
+      </div>
+      
+      <!-- Форма входа -->
+      <div id="loginForm" class="form-container" style="display: none;">
+        <form class="login-form">
+          <div class="form-group">
+            <div class="input-container">
+              <input type="email" id="login-email" required>
+              <label for="login-email">Введите email</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="input-container password-container">
+              <input type="password" id="login-password" required>
+              <label for="login-password">Пароль</label>
+              <button type="button" class="toggle-password" data-target="login-password">Показать</button>
+            </div>
+          </div>
+          <div class="button-container">
+            <button type="submit" class="submit-btn">Войти</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
+
 
   <script>
     // Получаем элементы
     const profileBtn = document.getElementById('profileBtn');
     const modal = document.getElementById('registrationModal');
     const closeBtn = document.querySelector('.close');
+    const registerForm = document.getElementById('registerForm');
+    const loginForm = document.getElementById('loginForm');
+    const registerTab = document.getElementById('registerTab');
+    const loginTab = document.getElementById('loginTab');
     const registrationForm = document.querySelector('.registration-form');
+    const loginFormElement = document.querySelector('.login-form');
+    const authOptions = document.querySelectorAll('.auth-option');
+    const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+
 
     // Открываем модальное окно при клике на иконку профиля
     profileBtn.addEventListener('click', function(e) {
@@ -69,10 +144,12 @@
       modal.style.display = 'block';
     });
 
+
     // Закрываем модальное окно при клике на крестик
     closeBtn.addEventListener('click', function() {
       modal.style.display = 'none';
     });
+
 
     // Закрываем модальное окно при клике вне его
     window.addEventListener('click', function(e) {
@@ -80,6 +157,36 @@
         modal.style.display = 'none';
       }
     });
+
+
+    // Переключение между вкладками регистрации и входа
+    authOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        authOptions.forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+        
+        if (this.id === 'registerTab') {
+          showRegisterForm();
+        } else {
+          showLoginForm();
+        }
+      });
+    });
+
+
+    // Функция показа формы входа
+    function showLoginForm() {
+      registerForm.style.display = 'none';
+      loginForm.style.display = 'block';
+    }
+
+
+    // Функция показа формы регистрации
+    function showRegisterForm() {
+      registerForm.style.display = 'block';
+      loginForm.style.display = 'none';
+    }
+
 
     // Обработка формы регистрации
     registrationForm.addEventListener('submit', function(e) {
@@ -97,6 +204,34 @@
       alert('Регистрация успешно завершена!');
       modal.style.display = 'none';
       registrationForm.reset();
+    });
+
+
+    // Обработка формы входа
+    loginFormElement.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Здесь можно добавить отправку данных на сервер
+      alert('Вход выполнен успешно!');
+      modal.style.display = 'none';
+      loginFormElement.reset();
+    });
+
+
+    // Переключение видимости пароля
+    togglePasswordButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const passwordInput = document.getElementById(targetId);
+        
+        if (passwordInput.type === 'password') {
+          passwordInput.type = 'text';
+          this.textContent = 'Скрыть';
+        } else {
+          passwordInput.type = 'password';
+          this.textContent = 'Показать';
+        }
+      });
     });
   </script>
 </body>
