@@ -1,39 +1,18 @@
-const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+const express = require('express'); 
+const connection = require('./database');
 
-const app = express();
-const PORT = 3000;
+const server = express(); 
+const port = 3000; 
 
-// Подключение к базе
-const db = new sqlite3.Database('./database.db');
+server.use(express.json()); 
 
-// Создание таблицы (один раз)
-db.run(`CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT
-)`);
-
-// Отдача фронта
-app.use(express.static(path.join(__dirname, '../frontend')));
-
-// API: получить всех пользователей
-app.get('/api/users', (req, res) => {
-  db.all('SELECT * FROM users', (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+server.get('/users', (req, res) => {
+    connection.query('SELECT * FROM users', (error, results) => {
+        if (error) return res.status(500).send('Ошибка при выполнении запроса');
+        res.json(results); 
+    });
 });
 
-// API: добавить пользователя (пример)
-app.get('/api/add/:name', (req, res) => {
-  const name = req.params.name;
-  db.run('INSERT INTO users (name) VALUES (?)', [name], function (err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ id: this.lastID, name });
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`Сервер запущен на http://localhost:${PORT}`);
+server.listen(port, () => {
+    console.log(`Сервер работает на http://localhost:${port}`);
 });
