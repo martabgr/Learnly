@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -21,22 +22,53 @@
     </div>
   </nav>
 
-
   <div class="main-content">
     <h1>Lernly</h1>
     <p>новый сервис онлайн-обучения</p>
     <button class="signup-button">Записаться</button>
   </div>
 
+  <div class="courses-section">
+    <h2 class="courses-title">Курсы</h2>
+    <p class="courses-subtitle">Множество разнообразных направлений, в которых ты точно найдешь себя</p>
+    
+    <div class="courses-container">
+      <div class="course-card">
+        <h3>Python-разработчик</h3>
+        <p class="course-description">Изучи python и начни свой путь в IT</p>
+        <div class="course-image">
+          <img src="kot.jpg" alt="Python-разработчик">
+        </div>
+        <a href="#" class="details-button">Подробнее</a>
+      </div>
+      
+      <div class="course-card">
+        <h3>3D-моделирование</h3>
+        <p class="course-description">Попробуй себя в роли 3D-дизайнера</p>
+        <div class="course-image">
+          <img src="kot.jpg" alt="3D-моделирование">
+        </div>
+        <a href="#" class="details-button">Подробнее</a>
+      </div>
+      
+      <div class="course-card">
+        <h3>Дизайн в Figma</h3>
+        <p class="course-description">Научись создавать ходовой дизайн с нуля</p>
+        <div class="course-image">
+          <img src="kot.jpg" alt="Дизайн в Figma">
+        </div>
+        <a href="#" class="details-button">Подробнее</a>
+      </div>
+    </div>
 
-  <div class="bottom-left">Курсы</div>
-
+    <div class="more-courses-container">
+      <a href="#" class="more-courses-button">Просмотреть остальные</a>
+    </div>
+  </div>
 
   <!-- Модальное окно регистрации/входа -->
   <div id="registrationModal" class="modal">
     <div class="modal-content">
-      <span class="close">&times;</span>
-      
       <!-- Переключатель между входом и регистрацией -->
       <div class="auth-selector">
         <div class="auth-option" id="loginTab">Вход</div>
@@ -45,44 +77,43 @@
       
       <!-- Форма регистрации -->
       <div id="registerForm" class="form-container">
-        <div class="role-section">
-          <div class="input-container checkbox-style">
-            <input type="checkbox" id="teacherCheck">
+        <div class="form-group checkbox-group teacher-checkbox-group">
+          <div class="checkbox-line">
             <label for="teacherCheck">Я преподаватель</label>
+            <input type="checkbox" id="teacherCheck">
           </div>
         </div>
         
         <form class="registration-form">
           <div class="form-group">
             <div class="input-container">
-              <input type="text" id="name" required>
-              <label for="name">Введите свое Имя</label>
+              <input type="text" id="name" required placeholder="Введите свое Имя">
             </div>
           </div>
           <div class="form-group">
             <div class="input-container">
-              <input type="email" id="email" required>
-              <label for="email">Введите email</label>
+              <input type="email" id="email" required placeholder="Введите email">
             </div>
           </div>
           <div class="form-group">
             <div class="input-container password-container">
-              <input type="password" id="password" required>
-              <label for="password">Пароль</label>
+              <input type="password" id="password" required placeholder="Пароль">
               <button type="button" class="toggle-password" data-target="password">Показать</button>
             </div>
           </div>
           <div class="form-group">
             <div class="input-container password-container">
-              <input type="password" id="confirm-password" required>
-              <label for="confirm-password">Повторите пароль</label>
+              <input type="password" id="confirm-password" required placeholder="Повторите пароль">
               <button type="button" class="toggle-password" data-target="confirm-password">Показать</button>
-            </div>
+
+
+</div>
           </div>
+          
           <div class="form-group checkbox-group">
-            <div class="input-container checkbox-style">
-              <input type="checkbox" id="agree" required>
+            <div class="checkbox-line">
               <label for="agree">Я соглашаюсь на обработку персональных данных</label>
+              <input type="checkbox" id="agree" required>
             </div>
           </div>
           
@@ -103,17 +134,22 @@
         <form class="login-form">
           <div class="form-group">
             <div class="input-container">
-              <input type="email" id="login-email" required>
-              <label for="login-email">Введите email</label>
+              <input type="email" id="login-email" required placeholder="Введите email">
             </div>
           </div>
           <div class="form-group">
             <div class="input-container password-container">
-              <input type="password" id="login-password" required>
-              <label for="login-password">Пароль</label>
+              <input type="password" id="login-password" required placeholder="Пароль">
               <button type="button" class="toggle-password" data-target="login-password">Показать</button>
             </div>
           </div>
+          <div class="form-group">
+            <div class="input-container password-container">
+              <input type="password" id="login-confirm-password" required placeholder="Повторите пароль">
+              <button type="button" class="toggle-password" data-target="login-confirm-password">Показать</button>
+            </div>
+          </div>
+          
           <div class="button-container">
             <button type="submit" class="submit-btn">Войти</button>
           </div>
@@ -122,12 +158,10 @@
     </div>
   </div>
 
-
   <script>
     // Получаем элементы
     const profileBtn = document.getElementById('profileBtn');
     const modal = document.getElementById('registrationModal');
-    const closeBtn = document.querySelector('.close');
     const registerForm = document.getElementById('registerForm');
     const loginForm = document.getElementById('loginForm');
     const registerTab = document.getElementById('registerTab');
@@ -137,19 +171,11 @@
     const authOptions = document.querySelectorAll('.auth-option');
     const togglePasswordButtons = document.querySelectorAll('.toggle-password');
 
-
     // Открываем модальное окно при клике на иконку профиля
     profileBtn.addEventListener('click', function(e) {
       e.preventDefault();
       modal.style.display = 'block';
     });
-
-
-    // Закрываем модальное окно при клике на крестик
-    closeBtn.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
-
 
     // Закрываем модальное окно при клике вне его
     window.addEventListener('click', function(e) {
@@ -157,7 +183,6 @@
         modal.style.display = 'none';
       }
     });
-
 
     // Переключение между вкладками регистрации и входа
     authOptions.forEach(option => {
@@ -173,13 +198,11 @@
       });
     });
 
-
     // Функция показа формы входа
     function showLoginForm() {
       registerForm.style.display = 'none';
       loginForm.style.display = 'block';
     }
-
 
     // Функция показа формы регистрации
     function showRegisterForm() {
@@ -187,9 +210,10 @@
       loginForm.style.display = 'none';
     }
 
-
     // Обработка формы регистрации
-    registrationForm.addEventListener('submit', function(e) {
+
+
+registrationForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
       const password = document.getElementById('password').value;
@@ -206,17 +230,23 @@
       registrationForm.reset();
     });
 
-
     // Обработка формы входа
     loginFormElement.addEventListener('submit', function(e) {
       e.preventDefault();
+      
+      const password = document.getElementById('login-password').value;
+      const confirmPassword = document.getElementById('login-confirm-password').value;
+      
+      if (password !== confirmPassword) {
+        alert('Пароли не совпадают!');
+        return;
+      }
       
       // Здесь можно добавить отправку данных на сервер
       alert('Вход выполнен успешно!');
       modal.style.display = 'none';
       loginFormElement.reset();
     });
-
 
     // Переключение видимости пароля
     togglePasswordButtons.forEach(button => {
@@ -234,5 +264,141 @@
       });
     });
   </script>
+<section class="results-section">
+  <h2 class="results-title">Поможем достичь результата</h2>
+  
+  <div class="carousel-container">
+    <!-- Левый блок -->
+    <div class="carousel-item left">
+      <h3>Готовое портфолио</h3>
+      <p>После завершения курса студент выходит с готовым портфолио, содержащим работы в рамках программы, что открывает больше возможностей при трудоустройстве.</p>
+    </div>
+
+    <!-- Центральный блок (активный) -->
+    <div class="carousel-item center active">
+      <h3>Преподавательский состав</h3>
+      <ul class="features-list">
+        <li>Каждый преподаватель заинтересован и компетентен в предмете</li>
+        <li>Грамотная обратная связь от преподавателей</li>
+        <li>Дружелюбная атмосфера и желание помочь студенту</li>
+      </ul>
+      <a href="#" class="next-button">Далее →</a>
+    </div>
+
+    <!-- Правый блок -->
+    <div class="carousel-item right">
+      <h3>Удобный формат занятий</h3>
+      <p>Лекции проводятся онлайн в группе или индивидуально. Практические задания можно выполнить в любое удобное время. Нет дедлайнов, можно выполнять свободно.</p>
+    </div>
+  </div>
+</section>
+<section class="reviews-section">
+  <h2 class="reviews-title">Отзывы</h2>
+  
+  <div class="reviews-container">
+    <!-- Первый отзыв -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-info">
+          <h3>Ирина, 30 лет</h3>
+        </div>
+        <div class="reviewer-avatar">
+          <img src="iconka.jpg" alt="Ирина">
+        </div>
+      </div>
+      <div class="review-content">
+        <p>Мне нужно было автоматизировать рутинные задачи — отчёты, парсинг данных, работа с Excel. На Learmy прошла курс по Python, и это реально изменило мой подход к работе. Все объясняется простым языком, даже для гуманитария. Понравилось, что можно учиться в своём темпе, а задания — с реальными кейсами. Сейчас пишу скрипты сама, без помощи разработчиков. Это кайф!</p>
+      </div>
+    </div>
+
+    <!-- Второй отзыв -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-info">
+          <h3>Даниил, 19 лет</h3>
+        </div>
+        <div class="reviewer-avatar">
+          <img src="iconka.jpg" alt="Даниил">
+        </div>
+      </div>
+      <div class="review-content">
+        <p>Я давно мечтал делать свои модели для игр, но Blender казался чем-то космическим. На Learmy всё разложили по полочкам: от интерфейса до проектирования геометрии. Особенно круто — домашние задания с обратной связью. Я сделал свой первый персонаж, текстурировал его и даже закинул в Unity. Теперь понимаю, как устроен игровой 3D. Курс — огонь, хочу продолжение!</p>
+      </div>
+    </div>
+
+    <!-- Третий отзыв -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-info">
+          <h3>Никита, 25 лет</h3>
+        </div>
+        <div class="reviewer-avatar">
+          <img src="iconka.jpg" alt="Никита">
+        </div>
+      </div>
+      <div class="review-content">
+        <p>Я уже работал с Python, но хотел перейти на Java для корпоративных проектов. Курс на Learmy оказался именно тем, что нужно: Чёткая структура, объяснение JVM, работа с коллекциями, потоки, и даже Spring Boot в конце. Преподаватели не просто читают лекции — они реально кодят и показывают, как думает разработчик. После курса я собрал свой первый REST API и подключил базу данных. Это был качественный апгрейд!</p>
+      </div>
+    </div>
+
+    <!-- Четвертый отзыв -->
+    <div class="review-card">
+      <div class="review-header">
+        <div class="reviewer-info">
+          <h3>Ольга, 21 год</h3>
+        </div>
+        <div class="reviewer-avatar">
+          <img src="iconka.jpg" alt="Ольга">
+        </div>
+      </div>
+      <div class="review-content">
+        <p>Научилась делать адаптивные макеты и прототипы. Уже взяли на стажировку!</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Секция "Открой для себя мир IT" -->
+<section class="cta-section">
+  <div class="cta-container">
+    <!-- Заголовки -->
+    <div class="cta-headers">
+      <h1>Открой для себя мир IT</h1>
+      <p class="cta-subtitle">Запишись на курсы сейчас!</p>
+    </div>
+    
+    <!-- Основной блок с формой -->
+    <div class="cta-content">
+      <!-- Левый текстовый блок -->
+      <div class="cta-text">
+        <h2>Не знаешь с чего начать?</h2>
+        <h3>Мы поможем!</h3>
+      </div>
+      
+      <!-- Правая часть с формой -->
+      <div class="cta-form">
+        <form class="simple-form">
+          <div class="form-group">
+            <input type="text" placeholder="Имя" required>
+          </div>
+          <div class="form-group">
+            <input type="email" placeholder="Почта" required>
+          </div>
+          <div class="form-group">
+            <input type="tel" placeholder="Номер телефона" required>
+          </div>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="consent" required>
+            <label for="consent">
+              Даю согласие на обработку персональных данных, в том числе с целью получения информации о новых продуктах, дано доступах, скидках, персонализированных предложениях, акциях и полезных мониторах на следующих условиях
+            </label>
+          </div>
+          
+          <button type="submit" class="submit-btn">Отправить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
 </body>
 </html>
