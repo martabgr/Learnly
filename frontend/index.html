@@ -263,6 +263,50 @@ registrationForm.addEventListener('submit', function(e) {
         }
       });
     });
+ // Карусель для секции "Поможем достичь результата"
+document.addEventListener('DOMContentLoaded', function() {
+    const carouselItems = document.querySelectorAll('.carousel-item');
+    let currentIndex = 1; // Индекс текущей центральной карточки
+
+    // Функция для обновления карусели
+    function updateCarousel() {
+        // Сначала скрываем все кнопки
+        document.querySelectorAll('.next-button').forEach(button => {
+            button.style.display = 'none';
+        });
+        
+        // Обновляем позиции карточек
+        carouselItems.forEach((item, index) => {
+            item.classList.remove('left', 'center', 'right', 'active');
+            
+            if (index === currentIndex) {
+                item.classList.add('center', 'active');
+                // Показываем кнопку только в центральной карточке
+                const button = item.querySelector('.next-button');
+                if (button) {
+                    button.style.display = 'inline-block';
+                }
+            } else if (index === (currentIndex - 1 + carouselItems.length) % carouselItems.length) {
+                item.classList.add('left');
+            } else if (index === (currentIndex + 1) % carouselItems.length) {
+                item.classList.add('right');
+            }
+        });
+    }
+
+    // Обработчик для кнопки "Далее" - используем делегирование событий
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('next-button')) {
+            e.preventDefault();
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+            updateCarousel();
+        }
+    });
+
+    // Инициализация карусели
+    updateCarousel();
+});
+
   </script>
 <section class="results-section">
   <h2 class="results-title">Поможем достичь результата</h2>
@@ -272,6 +316,7 @@ registrationForm.addEventListener('submit', function(e) {
     <div class="carousel-item left">
       <h3>Готовое портфолио</h3>
       <p>После завершения курса студент выходит с готовым портфолио, содержащим работы в рамках программы, что открывает больше возможностей при трудоустройстве.</p>
+      <a href="#" class="next-button" style="display: none;">Далее →</a>
     </div>
 
     <!-- Центральный блок (активный) -->
@@ -289,6 +334,7 @@ registrationForm.addEventListener('submit', function(e) {
     <div class="carousel-item right">
       <h3>Удобный формат занятий</h3>
       <p>Лекции проводятся онлайн в группе или индивидуально. Практические задания можно выполнить в любое удобное время. Нет дедлайнов, можно выполнять свободно.</p>
+      <a href="#" class="next-button" style="display: none;">Далее →</a>
     </div>
   </div>
 </section>
@@ -400,5 +446,63 @@ registrationForm.addEventListener('submit', function(e) {
     </div>
   </div>
 </section>
+<!-- Футер сайта -->
+<footer class="site-footer">
+  <div class="footer-container">
+    <!-- Левая колонка - Контакты -->
+    <div class="footer-column">
+      <h3>Контакты</h3>
+      <div class="contact-info">
+        <p class="phone">+375 29 XXX XX XX</p>
+        <p class="email">Learnly@gmail.com</p>
+      </div>
+    </div>
+
+    <!-- Центральная колонка - Документы -->
+    <div class="footer-column">
+      <h3>Документы</h3>
+      <ul class="documents-list">
+        <li><a href="#">Публичный договор</a></li>
+        <li><a href="#">Политика обработки персональных данных</a></li>
+        <li><a href="#">Отзыв согласия на обработку персональных данных</a></li>
+      </ul>
+    </div>
+
+    <!-- Правая колонка - Курсы -->
+    <div class="footer-column">
+      <h3>Курсы</h3>
+      <div class="courses-columns">
+        <ul class="courses-list">
+          <li><a href="#">Все курсы</a></li>
+          <li><a href="#">Фронтенд-разработка</a></li>
+          <li><a href="#">Дизайн</a></li>
+          <li><a href="#">Бэкенд-разработка</a></li>
+          <li><a href="#">3D-моделирование</a></li>
+          <li><a href="#">Java-разработчик</a></li>
+        </ul>
+        <ul class="courses-list">
+          <li><a href="#">Python-разработчик</a></li>
+          <li><a href="#">Дизайн в Figma</a></li>
+          <li><a href="#">JavaScript-фронтенд</a></li>
+          <li><a href="#">JavaScript-бэкенд</a></li>
+          <li><a href="#">2D-моделирование</a></li>
+          <li><a href="#">Roblox-конструирование</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Нижняя часть футера -->
+  <div class="footer-bottom">
+    <div class="footer-bottom-container">
+      <p>&copy; 2025 Lernly. Все права защищены.</p>
+      <div class="social-links">
+        <a href="#">Telegram</a>
+        <a href="#">VK</a>
+        <a href="#">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

@@ -1,7 +1,14 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #d4f4d2;
+    background: linear-gradient(
+    to right,
+    rgba(194, 221, 128, 1), /* твой основной цвет */
+    #C2DD80,                /* чуть более тёплый салатовый */
+    #D2ED90,                /* светлый лаймовый */
+    #E6F7B0                 /* мягкий пастельный оттенок */
+  );
+    font-family: Inter, sans-serif;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -10,8 +17,14 @@ body {
 
 
 nav {
-  background-color: #d4f4d2;
   padding: 20px;
+   background: linear-gradient(
+    to right,
+    rgba(194, 221, 128, 1), /* твой основной цвет */
+    #C2DD80,                /* чуть более тёплый салатовый */
+    #D2ED90,                /* светлый лаймовый */
+    #E6F7B0                 /* мягкий пастельный оттенок */
+  );
 }
 
 
@@ -208,7 +221,13 @@ nav {
 
 
 .details-button:hover {
-  background-color: #45a049;
+   background: linear-gradient(
+    to right,
+    rgba(194, 221, 128, 1), /* твой основной цвет */
+    #C2DD80,                /* чуть более тёплый салатовый */
+    #D2ED90,                /* светлый лаймовый */
+    #E6F7B0                 /* мягкий пастельный оттенок */
+  );
 }
 
 
@@ -444,7 +463,13 @@ nav {
 /* Секция "Поможем достичь результата" */
 .results-section {
   padding: 80px;
-  background-color: #d4f4d2;
+   background: linear-gradient(
+    to right,
+    rgba(194, 221, 128, 1), /* твой основной цвет */
+    #C2DD80,                /* чуть более тёплый салатовый */
+    #D2ED90,                /* светлый лаймовый */
+    #E6F7B0                 /* мягкий пастельный оттенок */
+  );
   width: 100%;
   box-sizing: border-box;
   margin: 100px 0;
@@ -574,7 +599,13 @@ nav {
 /* Секция отзывов */
 .reviews-section {
   padding: 80px;
-  background-color: #d4f4d2;
+ background: linear-gradient(
+    to right,
+    rgba(194, 221, 128, 1), /* твой основной цвет */
+    #C2DD80,                /* чуть более тёплый салатовый */
+    #D2ED90,                /* светлый лаймовый */
+    #E6F7B0                 /* мягкий пастельный оттенок */
+  );
   width: 100%;
   box-sizing: border-box;
   margin: 100px 0 150px 0;
@@ -671,7 +702,13 @@ nav {
 /* Секция призыва к действию */
 .cta-section {
   padding: 80px;
-  background-color: #d4f4d2;
+   background: linear-gradient(
+    to right,
+    rgba(194, 221, 128, 1), /* твой основной цвет */
+    #C2DD80,                /* чуть более тёплый салатовый */
+    #D2ED90,                /* светлый лаймовый */
+    #E6F7B0                 /* мягкий пастельный оттенок */
+  );
   width: 100%;
   box-sizing: border-box;
   margin: 0 0 100px 0;
@@ -805,4 +842,289 @@ nav {
 
 .cta-form .submit-btn:hover {
   background-color: #ec407a;
+}
+/* Стили для карусели */
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* Уменьшенное расстояние между карточками */
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    height: 500px;
+}
+
+.carousel-item {
+    background: #f8bbd0;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.carousel-item.left {
+    width: 300px;
+    height: 350px;
+    opacity: 0.7;
+    transform: translateX(-120%) scale(0.9);
+    z-index: 1;
+}
+
+.carousel-item.center {
+    background: #ec407a;
+    width: 400px;
+    height: 450px;
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    z-index: 2;
+}
+
+.carousel-item.right {
+    width: 300px;
+    height: 350px;
+    opacity: 0.7;
+    transform: translateX(120%) scale(0.9);
+    z-index: 1;
+}
+
+.carousel-item h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0 0 25px 0;
+    color: #333;
+}
+
+.carousel-item.center h3,
+.carousel-item.center p,
+.carousel-item.center li {
+    color: white;
+}
+
+.carousel-item p {
+    font-size: 1em;
+    color: #333;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.features-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    color: #333;
+    line-height: 1.5;
+    font-size: 1em;
+}
+
+.carousel-item.center .features-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 4px;
+    background: white;
+    border-radius: 45px;
+}
+
+/* Кнопка "Далее" теперь внутри карточек */
+.next-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    border-radius: 45px;
+    font-weight: bold;
+    margin-top: auto;
+    align-self: flex-end;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.next-button:hover {
+    background-color: #e0e0e0;
+}
+/* Стили для футера */
+.site-footer {
+  background: linear-gradient(135deg, #2c3e50, #34495e);
+  color: white;
+  padding: 60px 0 0 0;
+  margin-top: 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.footer-column {
+  flex: 1;
+}
+
+.footer-column h3 {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 25px;
+  color: #f8bbd0;
+  border-bottom: 2px solid #f8bbd0;
+  padding-bottom: 10px;
+}
+
+.contact-info p {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.contact-info p::before {
+  content: "•";
+  color: #f8bbd0;
+  margin-right: 10px;
+  font-size: 1.5em;
+}
+
+.documents-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.documents-list li {
+  margin-bottom: 15px;
+}
+
+.documents-list a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 1em;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.documents-list a::before {
+  content: "›";
+  color: #f8bbd0;
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+.documents-list a:hover {
+  color: #f8bbd0;
+}
+
+.courses-columns {
+  display: flex;
+  gap: 40px;
+}
+
+.courses-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+}
+
+.courses-list li {
+  margin-bottom: 12px;
+}
+
+.courses-list a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 0.95em;
+  transition: color 0.3s ease;
+  display: block;
+  padding: 5px 0;
+}
+
+.courses-list a:hover {
+  color: #f8bbd0;
+  transform: translateX(5px);
+  transition: all 0.3s ease;
+}
+
+/* Нижняя часть футера */
+.footer-bottom {
+  background: rgba(0, 0, 0, 0.3);
+  margin-top: 50px;
+  padding: 25px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #bdc3c7;
+  font-size: 0.9em;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.social-links a {
+  color: #ecf0f1;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: color 0.3s ease;
+  padding: 8px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+.social-links a:hover {
+  color: #f8bbd0;
+  border-color: #f8bbd0;
+  background: rgba(248, 187, 208, 0.1);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    padding: 0 40px;
+    gap: 40px;
+  }
+  
+  .courses-columns {
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .footer-bottom-container {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
 }
